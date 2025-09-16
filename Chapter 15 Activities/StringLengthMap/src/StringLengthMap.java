@@ -17,7 +17,8 @@ public class StringLengthMap
         try (Scanner in = new Scanner(new File(filename)))
         {
 
-            // Create your map here
+            
+            HashMap<Integer, String> things = new HashMap<>();
             
 
             while (in.hasNext())
@@ -25,15 +26,19 @@ public class StringLengthMap
                 String word = clean(in.next());
                 Integer len = word.length();
 
-                // Update the map here
-                // Modify Worked Example 15.1
+                if(things.get(len)==null){
+                    things.put(len, word);
+                } else {
+                    things.put(len, things.get(len) + ", " + word);
+                }
                 
 
 
             }
 
-            // Print the strings, in increasing order of their length
-            // Use this format: 1: i, a, i
+            for (Integer key: things.keySet()){
+                System.out.println(things.get(key));
+            }
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
