@@ -12,26 +12,29 @@ public class StringLengthMap
 {
     public static void main(String[] args) throws FileNotFoundException
     {
-        String filename = "src/test1.txt";
+        String filename = "C:\\Users\\ocschade\\projects\\data-structures\\Chapter 15 Activities\\StringLengthMap\\src\\test1.txt";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
 
-            // Create your map here
+            HashMap<Integer, String> lengthMap = new HashMap<>();
             
 
             while (in.hasNext())
             {
                 String word = clean(in.next());
                 Integer len = word.length();
-
-                // Update the map here
-                // Modify Worked Example 15.1
-                
+                if(lengthMap.containsKey(len)){
+                    lengthMap.put(len, lengthMap.get(len)+", "+word);
+                } else {
+                    lengthMap.put(len, word);
+                }
 
 
             }
-
+            for (Integer i: lengthMap.keySet()){
+                System.out.println(i+": "+lengthMap.get(i));
+            }
             // Print the strings, in increasing order of their length
             // Use this format: 1: i, a, i
         } catch (FileNotFoundException e)
