@@ -59,12 +59,15 @@ public class ToDoList
     */
     public void addTask(String optionStr)
     {
-        // Complete this method
-        String priority = optionStr.substring(4,5);
-        int num = Integer.parseInt(priority);
-        String description = optionStr.substring(6);
-        Task newTask = new Task(num, description);
-        list.add(newTask);
+        if(optionStr.charAt(4)>47 && optionStr.charAt(4)<58){
+            String priority = optionStr.substring(4,5);
+            int num = Integer.parseInt(priority);
+            String description = optionStr.substring(6);
+            Task newTask = new Task(num, description);
+            list.add(newTask);
+        }else{
+            System.out.println("The priority must be an integer between 1 and 9.");
+        }
             
     }
 
@@ -77,7 +80,9 @@ public class ToDoList
         Task next = null;
         
         // Complete this method
-        next = list.remove();
+        if(list.size()>0){
+            next = list.remove();
+        }
         
         
         if (next == null)
