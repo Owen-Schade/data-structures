@@ -13,36 +13,44 @@ public class Grid
     public void floodfill(int row, int column)
     {
         int counter = 1;
-        totrX.push(column);
-        totrY.push(row);
+        totrX.push(row);
+        totrY.push(column);
         while(!totrX.isEmpty()){
-            int tsX = totrX.firstElement();
-            int tsY = totrY.firstElement();
+            int tsX = totrX.pop();
+            int tsY = totrY.pop();
             if(tsX>0){
                 if(pixels[tsX-1][tsY] == 0){
                     totrX.push(tsX-1);
                     totrY.push(tsY);
+                    pixels[tsX-1][tsY] = -1;
+                }
+            }
+            
+            if(tsY<9){
+                if(pixels[tsX][tsY+1] == 0){
+                    totrX.push(tsX);
+                    totrY.push(tsY+1);
+                    pixels[tsX][tsY+1] = -1;
                 }
             }
             if(tsX<9){
                 if(pixels[tsX+1][tsY] == 0){
                     totrX.push(tsX+1);
                     totrY.push(tsY);
+                    pixels[tsX+1][tsY] = -1;
                 }
             }
             if(tsY>0){
                 if(pixels[tsX][tsY-1] == 0){
                     totrX.push(tsX);
                     totrY.push(tsY-1);
+                    pixels[tsX][tsY-1] = -1;
                 }
             }
-            if(tsY<9){
-                if(pixels[tsX][tsY+1] == 0){
-                    totrX.push(tsX);
-                    totrY.push(tsY+1);
-                }
-            }
-            pixels[totrX][totrY] = counter;
+            
+            
+            
+            pixels[tsX][tsY] = counter;
             counter++;
         }
     }
