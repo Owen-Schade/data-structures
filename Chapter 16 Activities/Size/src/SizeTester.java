@@ -11,7 +11,7 @@ public class SizeTester
         names.addFirst("Harry");
         names.addFirst("Dick");
 
-        ListIterator iterator = names.listIterator();
+        ListIterator iterator = names.getIterator();
         iterator.next();
         iterator.next();
         iterator.remove();
@@ -23,7 +23,7 @@ public class SizeTester
 
         names.removeFirst();
         
-        iterator = names.listIterator();
+        iterator = names.getIterator();
         while (iterator.hasNext()) 
             System.out.print(iterator.next() + " ");
         System.out.println();
