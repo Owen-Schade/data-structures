@@ -23,7 +23,11 @@ public class LinkedListQueue
     */
     public void firstToLast()
     {
-        . . .
+        tail.next=head;
+        Node temp = head.next;
+        head.next=null;
+        tail=head;
+        head=temp;
 
 
 
